@@ -1,3 +1,4 @@
+import java.util.Objects;
 public class Book {
     private Author author;
     private int year;
@@ -29,12 +30,10 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return title.equals(book.title);
+        return title.equals(book.title) && author.equals(book.author) && year == book.year;
     }
 
     public int hashCode() {
-        int titleBook = title == null ? 0 : title.hashCode();
-        titleBook = 31 * titleBook + year;
-        return titleBook;
+        return Objects.hash(title, author, year);
     }
 }
